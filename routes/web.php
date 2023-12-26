@@ -16,20 +16,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Route::get('/posts/{post:slug}', function (Post $post) {
     $categories = Category::all();
     return view('posts.show', compact('post', 'categories'));
 });
 
-Route::get('/posts', function () {
+Route::get('/', function () {
     $posts = Post::latest()->with('category', 'author')->get();
     $categories = Category::all();
+
     return view('posts.index', compact('posts', 'categories'));
-});
+})->name('home');
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts.index', [
@@ -37,7 +38,7 @@ Route::get('/categories/{category:slug}', function (Category $category) {
         'currentCategory' => $category,
         'categories' => Category::all()
     ]);
-});
+})->name('category');
 
 Route::get('/authors/{author:username}', function (User $author) {
     return view('posts.index', [
