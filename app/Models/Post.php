@@ -39,6 +39,7 @@ class Post extends Model
                   ->orWhere('body', 'like', '%' . $search . '%')
         );
 
+        // Query is same as the one below
         // $query->when($filters['category'] ?? false, fn($query, $category) => 
         //     $query->whereExists(
         //         fn($query) =>
@@ -52,6 +53,13 @@ class Post extends Model
             $query->whereHas('category', 
                 fn($query) =>
                     $query->where('slug', $category)
+            )
+        );
+
+        $query->when($filters['author'] ?? false, fn($query, $author) => 
+            $query->whereHas('author', 
+                fn($query) =>
+                    $query->where('username', $author)
             )
         );
 
