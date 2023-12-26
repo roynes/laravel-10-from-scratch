@@ -27,13 +27,15 @@ Route::get('/posts/{post:slug}', function (Post $post) {
 
 Route::get('/posts', function () {
     $posts = Post::latest()->with('category', 'author')->get();
-
-    return view('posts.index', compact('posts'));
+    $categories = Category::all();
+    return view('posts.index', compact('posts', 'categories'));
 });
 
 Route::get('/categories/{category:slug}', function (Category $category) {
     return view('posts.index', [
-        'posts' => $category->posts->load('author', 'category')
+        'posts' => $category->posts->load('author', 'category'),
+        'currentCategory' => $category,
+        'categories' => Category::all()
     ]);
 });
 
