@@ -36,7 +36,7 @@
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
                         <h5 class="font-bold">
-                            <a href="{{ request()->fullUrlWithQuery(['author'=> $post->author->username]) }}">
+                            <a href="{{ request()->mergeIfMissing(['author'=> $post->author->username])->fullUrlWithoutQuery(['page']) }}">
                                 {{ $post->author->name }}
                             </a>
                         </h5>

@@ -13,7 +13,10 @@
 
     @foreach ($categories as $category)
         <x-dropdown-item 
-            href="{{ request()->fullUrlWithQuery(['category'=>$category->slug]) }}" 
+            href="{{ 
+                request()->mergeIfMissing(['category'=>$category->slug])
+                         ->fullUrlWithoutQuery(['page']) 
+            }}" 
             :active="isset($currentCategory) && $currentCategory->slug === $category->slug">
             {{ ucwords($category->name) }}
         </x-dropdown-item>

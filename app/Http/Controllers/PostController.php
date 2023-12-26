@@ -14,7 +14,7 @@ class PostController extends Controller
             'posts' => Post::latest()
                             ->with('category', 'author:id,name,username')
                             ->filter(request()->only(['search', 'category', 'author']))
-                            ->get(),
+                            ->paginate(6)->withQueryString(),
         ]);
     }
 
