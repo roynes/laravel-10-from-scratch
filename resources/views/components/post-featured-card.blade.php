@@ -25,9 +25,9 @@
                 </div>
             </header>
 
-            <div class="mt-2 text-sm">
+            <div class="mt-2 text-sm space-y-4">
                 <p>
-                    {{ $post->excerpt}}
+                    {!! $post->excerpt !!}
                 </p>
             </div>
 
