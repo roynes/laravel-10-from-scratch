@@ -31,4 +31,14 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn($query, $search) => 
+            $query->where('title', 'like', '%' . $search . '%')
+                  ->orWhere('body', 'like', '%' . $search . '%')
+        );
+
+        return $query;
+    }
 }

@@ -36,7 +36,9 @@
         @if ($posts->count() > 0)
             <x-posts-grid :posts="$posts"/>
         @else
-            No posts yet, come back later.
+            <div class="w-full text-center">
+                No posts yet. Please check back later.
+            </div>
         @endif
     </main>
 </x-layout>
