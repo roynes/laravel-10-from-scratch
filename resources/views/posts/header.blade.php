@@ -33,9 +33,20 @@
 
         <!-- Search -->
         <div class="relative flex items-center rounded-xl bg-gray-100 px-3 py-2 lg:inline-flex">
-            <form method="GET" action="#">
-                <input type="text" name="search" placeholder="Find something" value="{{ request('search') }}"
-                    class="bg-transparent text-sm font-semibold placeholder-black">
+            <form method="GET" action="/">
+                @if (request('category'))
+                    <input type="hidden" name="category" value="{{ request('category') }}">
+                @endif
+
+                @if (request('author'))
+                    <input type="hidden" name="author" value="{{ request('author') }}">
+                @endif
+
+                <input type="text" 
+                       name="search" 
+                       placeholder="Find something" 
+                       value="{{ request('search') }}"
+                       class="bg-transparent text-sm font-semibold placeholder-black">
             </form>
         </div>
     </div>

@@ -13,7 +13,7 @@
 
     @foreach ($categories as $category)
         <x-dropdown-item 
-            href="/?category={{ $category->slug }}" 
+            href="{{ request()->fullUrlWithQuery(['category'=>$category->slug]) }}" 
             :active="isset($currentCategory) && $currentCategory->slug === $category->slug">
             {{ ucwords($category->name) }}
         </x-dropdown-item>

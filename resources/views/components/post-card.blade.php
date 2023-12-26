@@ -39,7 +39,7 @@
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3 w-36">
                         <h5 class="font-bold">
-                            <a href="/?author={{ $post->author->username }}">
+                            <a href="{{ request()->fullUrlWithQuery(['author'=> $post->author->username]) }}">
                                 {{ $post->author->name }}
                             </a>
                         </h5>
