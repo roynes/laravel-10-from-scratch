@@ -10,12 +10,15 @@ class PostController extends Controller
 {
     public function index() 
     {
+
+        // dd(Category::all());
         return view('posts.index', [
             'posts' => Post::latest()
                             ->with('category', 'author')
-                            ->filter(request()->only('search'))
+                            ->filter(request()->only(['search', 'category']))
                             ->get(),
-            'categories' => Category::all()
+            'categories' => Category::all(),
+            'currentCategory' => Category::firstWhere('slug', request('category'))
         ]);
     }
 

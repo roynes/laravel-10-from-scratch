@@ -15,12 +15,14 @@
                     </button>
                 </x-slot>
 
-                <x-dropdown-item href="/" :active="request()->routeIs('home')">
+                <x-dropdown-item href="/" :active="! isset($currentCategory)">
                     All
                 </x-dropdown-item>
 
                 @foreach ($categories as $category)
-                    <x-dropdown-item href="/categories/{{ $category->slug }}" :active="request()->is('categories/' . $category->slug)">
+                    <x-dropdown-item 
+                        href="/?category={{ $category->slug }}" 
+                        :active="isset($currentCategory) && $currentCategory->slug === $category->slug">
                         {{ ucwords($category->name) }}
                     </x-dropdown-item>
                 @endforeach
@@ -52,11 +54,8 @@
         <!-- Search -->
         <div class="relative flex items-center rounded-xl bg-gray-100 px-3 py-2 lg:inline-flex">
             <form method="GET" action="#">
-                <input type="text"
-                       name="search"
-                       placeholder="Find something"
-                       value="{{ request('search') }}"
-                       class="bg-transparent text-sm font-semibold placeholder-black">
+                <input type="text" name="search" placeholder="Find something" value="{{ request('search') }}"
+                    class="bg-transparent text-sm font-semibold placeholder-black">
             </form>
         </div>
     </div>
