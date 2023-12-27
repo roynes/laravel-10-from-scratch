@@ -19,8 +19,12 @@ class SessionsController extends Controller
             'password' => 'required',
         ]);
 
-        if(auth()->attempt($attributes))
+        if(auth()->attempt($attributes)) {
+            //Prevent session fixation attack
+            session()->regenerate();
+
             return redirect('/')->with('success', 'Logged in.');
+        }
 
         // basically the same as below
         // throw ValidationException::withMessages([
