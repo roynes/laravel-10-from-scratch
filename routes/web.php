@@ -14,6 +14,14 @@ Route::post('/register', [RegisterController::class, 'store'])
 Route::get('/register', [RegisterController::class, 'create'])
     ->name('register')
     ->middleware('guest');
+
+    
+Route::get('/login', [SessionsController::class, 'create'])
+    ->name('login')
+    ->middleware('guest');    
+Route::post('/login', [SessionsController::class, 'store'])
+    ->name('create.sessions')
+    ->middleware('guest');    
 Route::post('/logout', [SessionsController::class, 'destroy'])
     ->name('logout')
     ->middleware('auth');
