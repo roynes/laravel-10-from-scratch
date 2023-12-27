@@ -18,8 +18,28 @@
                 </a>
             </div>
 
-            <div class="mt-8 md:mt-0">
-                <a href="/" class="text-xs font-bold uppercase">Home Page</a>
+            <div class="mt-8 md:mt-0 flex flex-row items-center justify-center">
+                @guest
+                    <a href="/register" class="text-xs font-bold uppercase">
+                        Register
+                    </a>
+                    <a href="/login" class="text-xs font-bold uppercase ml-6 mr-3">
+                        Log in
+                    </a>
+                @endguest
+
+                @auth
+                    <span class="text-xs font-bold uppercase">
+                        Welcome, {{ auth()->user()->name }}
+                    </span>
+
+                    <form action="/logout" 
+                          method="post" 
+                          class="text-xs font-bold mr-3 ml-6 text-blue-500">
+                        @csrf
+                        <button type="submit" class="uppercase">Log out</button>
+                    </form>
+                @endauth
 
                 <a href="#"
                     class="ml-3 rounded-full bg-blue-500 px-5 py-3 text-xs font-semibold uppercase text-white">
