@@ -16,13 +16,16 @@
                 placeholder="Quick, think of something to say"
                 class="w-full border rounded-xl focus:outline-none p-4 focus:ring-4"
       >{!! old('body') !!}</textarea>
+
+      @error('body')
+          <span class="text-sm text-red-500">{{ $message }}</span>
+      @enderror
     </main>
 
     <div class="flex justify-end">
-      <x-button type="submit" 
-                class="bg-blue-500 hover:bg-blue-600 text-sm">
+      <x-submit-button class=" text-sm">
         Post
-      </x-button>
+      </x-submit-button>
     </div>
   </form>
 </x-panel>
