@@ -75,7 +75,15 @@
             </div>
 
             <section class="col-span-8 col-start-5 mt-10 space-y-8">
-                <x-comment-form class="mb-16"/>
+                @auth
+                    <x-comment-form link="/posts/{{ $post->slug}}/comment" class="mb-16"/>
+                @else
+                    <p>
+                        <a href="/register" class="text-blue-500 hover:underline">Register</a> 
+                        or 
+                        <a href="/login" class="text-blue-500 hover:underline">Login</a> to leave a comment.
+                    </p>
+                @endauth
                 @foreach ($post->comments as $comment)
                     <x-post-comment :comment="$comment"/>                    
                 @endforeach
