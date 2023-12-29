@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Post;
+use Stringable;
 
 class PostController extends Controller
 {
@@ -27,6 +29,25 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('posts.create', [
+            'categories' => Category::all()
+        ]);
+    }
+
+    public function store(Post $post)
+    {
+        $attributes = request()->validate([
+            'body' => 'required',
+            'title' => 'required|min:5|max:255',
+            'excerpt' => 'required|min:5|max:350',
+            'category_id' => 'required|exists:categories,id'
+        ]);
+
+        $attributes['slug'] = $attributes['title'];
+        $attributes['user_id'] = auth()->id();
+
+        $post->create($attributes);
+
+        return redirect('/')->with('success', "You've added a new post");
     }
 }

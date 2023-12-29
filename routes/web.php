@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/admin/posts/create', [PostController::class, 'create'])
     ->name('post.create')
     ->middleware('admin');
+Route::post('/admin/posts', [PostController::class, 'store'])
+    ->name('post.store')
+    ->middleware('admin');
 
 Route::post('/newsletter', NewsletterController::class);
 
