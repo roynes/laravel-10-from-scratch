@@ -7,6 +7,10 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/admin/posts/create', [PostController::class, 'create'])
+    ->name('post.create')
+    ->middleware('admin');
+
 Route::post('/newsletter', NewsletterController::class);
 
 Route::post('/posts/{post:slug}/comment', [PostCommentsController::class, 'store'])

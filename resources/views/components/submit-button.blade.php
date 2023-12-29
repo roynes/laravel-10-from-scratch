@@ -1,3 +1,4 @@
-<x-button type="submit" class="bg-blue-500 hover:bg-blue-600">
+<x-button type="submit"
+    {{ $attributes->merge(['class' => 'bg-blue-500 hover:bg-blue-0'])}}>
     {{ $slot }}
 </x-button>
