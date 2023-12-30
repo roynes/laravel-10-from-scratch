@@ -5,7 +5,7 @@
     <div class="px-5 py-6 lg:flex">
         <div class="flex-1 lg:mr-8">
             {{-- TODO --}}
-            <img src="/images/illustration-1.png" alt="Blog Post illustration" class="rounded-xl">
+            <img src="{{ asset('/storage/' . $post->thumbnail )}}" alt="Blog Post illustration" class="rounded-xl">
         </div>
 
         <div class="flex flex-1 flex-col justify-between">
@@ -26,7 +26,7 @@
             </header>
 
             <div class="mt-2 space-y-4 text-sm">
-                <p>
+                <p class="max-w-lg break-words">
                     {!! $post->excerpt !!}
                 </p>
             </div>

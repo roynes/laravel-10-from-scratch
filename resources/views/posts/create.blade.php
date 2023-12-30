@@ -5,7 +5,7 @@
     </div>
 
     <x-panel class="mx-auto max-w-screen-lg p-8 mt-4">
-        <form action="/admin/posts" method="POST">
+        <form action="/admin/posts" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="space-y-12">
                 <div class="border-gray-900/10 pb-12">
@@ -43,6 +43,7 @@
                                 <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                             @enderror
                         </div>
+
                         {{-- Body --}}
                         <div class="col-span-full">
                             <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Main
@@ -57,6 +58,27 @@
                             @enderror
                         </div>
 
+                        {{-- Thumbnail --}}
+                        <div class="col-span-full">
+                            <label for="thumbnail" class="block text-sm font-medium leading-6 text-gray-900">Thumbnail</label>
+                            <div class="mt-2">
+                                <div class="flex w-full rounded-md shadow-sm ring-1 ring-inset 
+                                           ring-gray-300 focus-within:ring-2 focus-within:ring-inset 
+                                           focus-within:ring-indigo-600">
+                                    <input type="file" name="thumbnail" id="thumbnail"
+                                           class="block flex-1 border-0 bg-transparent 
+                                                  px-3 py-1.5 text-gray-900 
+                                                placeholder:text-gray-400 focus:ring-0 
+                                                  sm:text-sm sm:leading-6"
+                                           placeholder="Write your awesome title">
+                                </div>
+                            </div>
+                            @error('thumbnail')
+                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            @enderror
+                        </div>
+
+                        {{-- Category --}}
                         <div class="col-span-1 mt-3">
                             <label for="category_id"
                                 class="block text-sm font-medium leading-6 text-gray-900">

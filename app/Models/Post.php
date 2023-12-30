@@ -17,7 +17,8 @@ class Post extends Model
         'slug', 
         'published_at', 
         'user_id', 
-        'category_id'
+        'category_id',
+        'thumbnail'
     ];
 
     protected $guarded = ['id'];

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Post;
-use Stringable;
 
 class PostController extends Controller
 {
@@ -38,13 +37,18 @@ class PostController extends Controller
     {
         $attributes = request()->validate([
             'body' => 'required',
+            'thumbnail' => 'required|image|max:5120',
             'title' => 'required|min:5|max:255',
-            'excerpt' => 'required|min:5|max:350',
+            'excerpt' => 'required|min:5|max:255',
             'category_id' => 'required|exists:categories,id'
         ]);
 
+        $thumbnailLink = request()->file('thumbnail')?->store('thumbnails');
+
         $attributes['slug'] = $attributes['title'];
         $attributes['user_id'] = auth()->id();
+        $attributes['thumbnail'] = $thumbnailLink;
+        $attributes['published_at'] = now();
 
         $post->create($attributes);
 

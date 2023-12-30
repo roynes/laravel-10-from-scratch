@@ -8,7 +8,7 @@
     ]) }}>
     <div class="px-5 py-6">
         <div>
-            <img src="/images/illustration-3.png" alt="Blog Post illustration" class="rounded-xl">
+            <img src="{{ asset('/storage/' . $post->thumbnail )}}" alt="Blog Post illustration" class="rounded-xl w-full">
         </div>
 
         <div class="mt-8 flex flex-col justify-between">
@@ -29,7 +29,7 @@
             </header>
 
             <div class="mt-4 space-y-4 text-sm">
-                <p>
+                <p class="max-w-lg break-words">
                     {!! $post->excerpt !!}
                 </p>
             </div>
