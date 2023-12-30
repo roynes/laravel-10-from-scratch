@@ -12,20 +12,13 @@
     @csrf
 
     <main>
-      <textarea name="body" id="body" cols="30" rows="3" 
-                placeholder="Quick, think of something to say"
-                class="w-full border rounded-xl focus:outline-none p-4 focus:ring-4"
-      >{!! old('body') !!}</textarea>
-
-      @error('body')
-          <span class="text-sm text-red-500">{{ $message }}</span>
-      @enderror
+      <x-form.text-area name="body" placeholder="Quick, think of something to say"/>      
     </main>
 
     <div class="flex justify-end">
-      <x-submit-button class=" text-sm">
+      <x-form.button class=" text-sm">
         Post
-      </x-submit-button>
+      </x-form.button>
     </div>
   </form>
 </x-panel>

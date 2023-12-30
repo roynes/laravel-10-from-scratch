@@ -11,80 +11,28 @@
                 <div class="border-gray-900/10 pb-12">
                     <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         {{-- Title --}}
-                        <div class="col-span-full">
-                            <label for="title" class="block text-sm font-medium leading-6 text-gray-900">Title</label>
-                            <div class="mt-2">
-                                <div
-                                    class="flex w-full rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
-                                    <input type="text" name="title" id="title" autocomplete="title"
-                                        class="block flex-1 border-0 bg-transparent 
-                                               px-3 py-1.5 text-gray-900 
-                                               placeholder:text-gray-400 focus:ring-0 
-                                               sm:text-sm sm:leading-6"
-                                        placeholder="Write your awesome title"
-                                        value="{{ old('title') }}">
-                                </div>
-                            </div>
-                            @error('title')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <x-form.input name="title" 
+                                      placeholder="Write your awesome title" 
+                                      label="Title"/>
 
                         {{-- Excerpt --}}
-                        <div class="col-span-full">
-                            <label for="excerpt"
-                                class="block text-sm font-medium leading-6 text-gray-900">Excerpt</label>
-                            <div class="mt-2">
-                                <textarea id="excerpt" name="excerpt" rows="3"
-                                    class="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Introduce your thoughts">{{ old('excerpt') }}</textarea>
-                            </div>
-                            @error('excerpt')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <x-form.text-area name="excerpt"
+                                          label="Excerpt"
+                                          placeholder="Introduce your thoughts"/>
 
                         {{-- Body --}}
-                        <div class="col-span-full">
-                            <label for="body" class="block text-sm font-medium leading-6 text-gray-900">Main
-                                content</label>
-                            <div class="mt-2">
-                                <textarea id="body" name="body" rows="3"
-                                    class="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="Write everything here">{{ old('body') }}</textarea>
-                            </div>
-                            @error('body')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <x-form.text-area name="body"
+                                          label="Main content"
+                                          placeholder="Finally, write everything down here"/>
 
                         {{-- Thumbnail --}}
-                        <div class="col-span-full">
-                            <label for="thumbnail" class="block text-sm font-medium leading-6 text-gray-900">Thumbnail</label>
-                            <div class="mt-2">
-                                <div class="flex w-full rounded-md shadow-sm ring-1 ring-inset 
-                                           ring-gray-300 focus-within:ring-2 focus-within:ring-inset 
-                                           focus-within:ring-indigo-600">
-                                    <input type="file" name="thumbnail" id="thumbnail"
-                                           class="block flex-1 border-0 bg-transparent 
-                                                  px-3 py-1.5 text-gray-900 
-                                                placeholder:text-gray-400 focus:ring-0 
-                                                  sm:text-sm sm:leading-6"
-                                           placeholder="Write your awesome title">
-                                </div>
-                            </div>
-                            @error('thumbnail')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <x-form.input name="thumbnail" 
+                                      label="Thumbnail"
+                                      type="file"/>
 
                         {{-- Category --}}
                         <div class="col-span-1 mt-3">
-                            <label for="category_id"
-                                class="block text-sm font-medium leading-6 text-gray-900">
-                                Category
-                            </label>
-
+                            <x-form.label for="category_id" label="Category"/>
                             <select name="category_id" id="category_id">
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
@@ -93,10 +41,7 @@
                                     </option>
                                 @endforeach
                             </select>
-
-                            @error('category')
-                                <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
-                            @enderror
+                            <x-form.error for="category"/>
                         </div>
                     </div>
                 </div>
@@ -108,7 +53,7 @@
                         Cancel
                     </x-button>
                 </a>
-                <x-submit-button class="text-sm font-semibold">Publish</x-submit-button>
+                <x-form.button class="text-sm font-semibold">Publish</x-form.button>
             </div>
         </form>
     </x-panel>
