@@ -35,16 +35,33 @@
                 @endguest
 
                 @auth
-                    <span class="text-xs font-bold uppercase">
-                        Welcome, {{ auth()->user()->name }}
-                    </span>
+                    <x-dropdown>
+                        <x-slot name="trigger">
+                            <span class="text-xs font-bold uppercase">
+                                Welcome, {{ auth()->user()->name }}
+                            </span>
+                        </x-slot>
 
-                    <form action="/logout" 
-                          method="post" 
-                          class="text-xs font-bold mr-3 ml-6 text-blue-500">
-                        @csrf
-                        <button type="submit" class="uppercase">Log out</button>
-                    </form>
+                        <x-dropdown-item href="/admin/dashboard"
+                                         :active="request()->is('admin/dashboard')">
+                            Dashboard
+                        </x-dropdown-item>
+                        <x-dropdown-item href="/admin/posts/create"
+                                         :active="request()->is('admin/posts/create')">
+                            New Post
+                        </x-dropdown-item>
+                        <x-dropdown-item>
+                            <form action="/logout" 
+                                method="post" 
+                                class="w-full">
+                                @csrf
+                                <button type="submit" 
+                                        class="">
+                                    Log out
+                                </button>
+                            </form>
+                        </x-dropdown-item>
+                    </x-dropdown>
                 @endauth
 
                 <a href="#newsletter"
