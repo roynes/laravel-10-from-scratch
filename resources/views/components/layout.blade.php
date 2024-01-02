@@ -35,33 +35,35 @@
                 @endguest
 
                 @auth
-                    <x-dropdown>
-                        <x-slot name="trigger">
-                            <span class="text-xs font-bold uppercase">
-                                Welcome, {{ auth()->user()->name }}
-                            </span>
-                        </x-slot>
+                    <div class="lg:mr-8">
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <span class="text-xs font-bold uppercase">
+                                    Welcome, {{ auth()->user()->name }}
+                                </span>
+                            </x-slot>
 
-                        <x-dropdown-item href="/admin/dashboard"
-                                         :active="request()->is('admin/dashboard')">
-                            Dashboard
-                        </x-dropdown-item>
-                        <x-dropdown-item href="/admin/posts/create"
-                                         :active="request()->is('admin/posts/create')">
-                            New Post
-                        </x-dropdown-item>
-                        <x-dropdown-item>
-                            <form action="/logout" 
-                                method="post" 
-                                class="w-full">
-                                @csrf
-                                <button type="submit" 
-                                        class="">
-                                    Log out
-                                </button>
-                            </form>
-                        </x-dropdown-item>
-                    </x-dropdown>
+                            <x-dropdown-item href="/admin/dashboard"
+                                            :active="request()->is('admin/dashboard')">
+                                Dashboard
+                            </x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts/create"
+                                            :active="request()->is('admin/posts/create')">
+                                New Post
+                            </x-dropdown-item>
+                            <x-dropdown-item>
+                                <form action="/logout" 
+                                    method="post" 
+                                    class="w-full">
+                                    @csrf
+                                    <button type="submit" 
+                                            class="">
+                                        Log out
+                                    </button>
+                                </form>
+                            </x-dropdown-item>
+                        </x-dropdown>
+                    </div>
                 @endauth
 
                 <a href="#newsletter"
