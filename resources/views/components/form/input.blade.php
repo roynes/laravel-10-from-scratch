@@ -2,7 +2,8 @@
     'name',
     'label' => 'Label here',
     'placeholder' => '',
-    'type' => 'text'
+    'type' => 'text',
+    'autocomplete' => ''
 ])
 
 <div class="col-span-full">
@@ -17,6 +18,7 @@
                           placeholder:text-gray-400 focus:ring-0 
                           sm:text-sm sm:leading-6"
                    placeholder="{{ $placeholder }}"
+                   autocomplete="{{ $autocomplete }}"
                    value="{{ old($name) }}">
         </div>
     </div>
