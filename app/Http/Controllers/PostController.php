@@ -25,33 +25,4 @@ class PostController extends Controller
             ])
         ]);
     }
-
-    public function create()
-    {
-        return view('posts.create', [
-            'categories' => Category::all()
-        ]);
-    }
-
-    public function store(Post $post)
-    {
-        $attributes = request()->validate([
-            'body' => 'required',
-            'thumbnail' => 'required|image|max:5120',
-            'title' => 'required|min:5|max:255',
-            'excerpt' => 'required|min:5|max:255',
-            'category_id' => 'required|exists:categories,id'
-        ]);
-
-        $thumbnailLink = request()->file('thumbnail')?->store('thumbnails');
-
-        $attributes['slug'] = $attributes['title'];
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = $thumbnailLink;
-        $attributes['published_at'] = now();
-
-        $post->create($attributes);
-
-        return redirect('/')->with('success', "You've added a new post");
-    }
 }

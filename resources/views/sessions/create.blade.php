@@ -24,7 +24,7 @@
                     </div>
 
                     <div>
-                        <x-form.button class="text-sm font-semibold w-full leading-6">
+                        <x-form.button class="text-sm font-semibold w-full leading-6 py-3">
                             Log in
                         </x-form.button>
                     </div>

@@ -43,8 +43,8 @@
                                 </span>
                             </x-slot>
 
-                            <x-dropdown-item href="/admin/dashboard"
-                                            :active="request()->is('admin/dashboard')">
+                            <x-dropdown-item href="/admin/posts"
+                                            :active="request()->is('admin/posts')">
                                 Dashboard
                             </x-dropdown-item>
                             <x-dropdown-item href="/admin/posts/create"

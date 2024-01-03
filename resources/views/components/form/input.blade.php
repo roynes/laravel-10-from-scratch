@@ -3,7 +3,8 @@
     'label' => 'Label here',
     'placeholder' => '',
     'type' => 'text',
-    'autocomplete' => ''
+    'autocomplete' => '',
+    'value' => old($name)
 ])
 
 <div class="col-span-full">
@@ -14,12 +15,12 @@
                     focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600">
             <input type="{{ $type }}" name="{{ $name }}" id="{{ $name }}"
                    class="block w-full border-0 bg-transparent 
-                          px-3 py-1.5 text-gray-900 
+                          px-3 py-3 text-gray-900 
                           placeholder:text-gray-400 focus:ring-0 
                           sm:text-sm sm:leading-6"
                    placeholder="{{ $placeholder }}"
                    autocomplete="{{ $autocomplete }}"
-                   value="{{ old($name) }}">
+                   value="{{ $value }}">
         </div>
     </div>
     <x-form.error for="{{ $name }}"/>
