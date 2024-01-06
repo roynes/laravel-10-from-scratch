@@ -15,7 +15,7 @@ class MustBeAdministrator
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(! auth()->user()->admin)
+        if(! request()->user()?->can('admin'))
             abort(Response::HTTP_FORBIDDEN); 
 
         return $next($request);
