@@ -13,24 +13,28 @@
                 <div class="border-gray-900/10 pb-12">
                     <div class="mt-4 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                         {{-- Title --}}
-                        <x-form.input name="title" 
-                                    placeholder="Write your awesome title" 
-                                    label="Title"/>
+                        <x-form.input 
+                            name="title" 
+                            placeholder="Write your awesome title" 
+                            label="Title"/>
 
                         {{-- Excerpt --}}
-                        <x-form.text-area name="excerpt"
-                                        label="Excerpt"
-                                        placeholder="Introduce your thoughts"/>
+                        <x-form.text-area 
+                            name="excerpt"
+                            label="Excerpt"
+                            placeholder="Introduce your thoughts"/>
 
                         {{-- Body --}}
-                        <x-form.text-area name="body"
-                                        label="Main content"
-                                        placeholder="Finally, write everything down here"/>
+                        <x-form.text-area 
+                            name="body"
+                            label="Main content"
+                            placeholder="Finally, write everything down here"/>
 
                         {{-- Thumbnail --}}
-                        <x-form.input name="thumbnail" 
-                                    label="Thumbnail"
-                                    type="file"/>
+                        <x-form.input 
+                            name="thumbnail" 
+                            label="Thumbnail"
+                            type="file"/>
 
                         {{-- Category --}}
                         <div class="col-span-1 mt-3">

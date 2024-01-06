@@ -29,20 +29,12 @@ class AdminPostController extends Controller
 
     public function store(Post $post)
     {
-        $attributes = request()->validate([
-            'body' => 'required',
-            'thumbnail' => 'required|image|max:5120',
-            'title' => 'required|min:5|max:255',
-            'excerpt' => 'required|min:5|max:255',
-            'category_id' => 'required|exists:categories,id'
+        $attributes = array_merge($result = $this->validatePost($post), [
+            'slug' => $result['title'],
+            'user_id' => auth()->id(),
+            'thumbnail' => request()->file('thumbnail')?->store('thumbnails'),
+            'published_at' => now()
         ]);
-
-        $thumbnailLink = request()->file('thumbnail')?->store('thumbnails');
-
-        $attributes['slug'] = $attributes['title'];
-        $attributes['user_id'] = auth()->id();
-        $attributes['thumbnail'] = $thumbnailLink;
-        $attributes['published_at'] = now();
 
         $post->create($attributes);
 
@@ -51,14 +43,7 @@ class AdminPostController extends Controller
 
     public function update(Post $post)
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'thumbnail' => 'image',
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post->id)],
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')]
-        ]);
+        $attributes = $this->validatePost($post);
 
         if (isset($attributes['thumbnail'])) {
             $attributes['thumbnail'] = request()->file('thumbnail')->store('thumbnails');
@@ -74,5 +59,24 @@ class AdminPostController extends Controller
         $post->delete();
 
         return back()->with('success', 'Post Deleted!');
+    }
+
+    protected function validatePost(?Post $post = null): array
+    {
+        $post ??= new Post;
+
+        $attributes = [
+            'title' => 'required|min:5|max:255',
+            'thumbnail' => $post->exists ? 'image|max:5120' :'required|image|max:5120',
+            'excerpt' => 'required|min:5|max:255',
+            'body' => 'required',
+            'category_id' => 'required|exists:categories,id'
+        ];
+
+        if(request()->isMethod('patch')) {
+            $attributes['slug'] = ['required', Rule::unique('posts', 'slug')->ignore($post->id)];
+        }
+
+        return request()->validate($attributes);
     }
 }

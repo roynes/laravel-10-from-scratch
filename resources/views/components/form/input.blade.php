@@ -1,6 +1,6 @@
 @props([
     'name',
-    'label' => 'Label here',
+    'label' => '',
     'placeholder' => '',
     'type' => 'text',
     'autocomplete' => '',
